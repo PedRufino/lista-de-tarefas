@@ -1,13 +1,19 @@
-<div class="container">
-    <img src="assets/img/task-list-null.png" alt="Sua lista está vazia - Imagem ilustrativa" loading="eager"/>
-
-    @if (addItem()) {
-        <button class="btn btn-primary" (click)="addItem.set(false)">
-            Crie uma lista de tarefas
-        </button>
-    } @else {
-        <app-input-add-item 
-        [inputListItems]="getListItems()"
-        (outputAddListItems)="getInputAndAddItem($event)" />
-    }
-</div>
+@if(!getListItems().length){
+    <div class="container">
+        <img src="assets/img/task-list-null.png" alt="Sua lista está vazia - Imagem ilustrativa" loading="eager"/>
+    
+        @if (addItem()) {
+            <button class="btn btn-primary" (click)="addItem.set(false)">
+                Crie uma lista de tarefas
+            </button>
+        } @else {
+            <app-input-add-item 
+            [inputListItems]="getListItems()"
+            (outputAddListItem)="getInputAndAddItem($event)" />
+        }
+    </div>
+} @else {
+    <app-input-add-item 
+    [inputListItems]="getListItems()"
+    (outputAddListItem)="getInputAndAddItem($event)" />
+}

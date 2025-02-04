@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, ElementRef, EventEmitter, inject, Input, Output, ViewChild } from '@angular/core';
 
 // Interfaces
-import { IListItems } from '../../interface/iListItems.interface';
-import { NgClass } from '@angular/common';
+import { IListItems } from '../../interface/IListItems.interface';
+import { JsonPipe, NgClass } from '@angular/common';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class InputAddItemComponent {
   @ViewChild("inputText") public inputText!: ElementRef
 
   @Input({ required: true }) public inputListItems: Array<IListItems> = []
-  @Output() public outputAddListItems = new EventEmitter<IListItems>()
+  @Output() public outputAddListItem = new EventEmitter<IListItems>()
   public focusAndAddItem(value: string){
     if (value) {
       this.#cdr.detectChanges()
@@ -29,7 +29,7 @@ export class InputAddItemComponent {
       const timestamp = currentDate.getTime()
       const id = `ID ${timestamp}`
 
-      this.outputAddListItems.emit({
+      this.outputAddListItem.emit({
         id,
         checked: false,
         value

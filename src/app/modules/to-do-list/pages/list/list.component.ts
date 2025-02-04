@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 
 // Components
 import { InputAddItemComponent } from '../../components/input-add-item/input-add-item.component';
-import { IListItems } from '../../interface/iListItems.interface';
+import { IListItems } from '../../interface/IListItems.interface';
 
 @Component({
   selector: 'app-list',
@@ -15,7 +15,7 @@ import { IListItems } from '../../interface/iListItems.interface';
 export class ListComponent {
   public addItem = signal(true)
 
-  #setListItems = signal<IListItems[]>([this.#parseItems()])
+  #setListItems = signal<IListItems[]>(this.#parseItems())
   public getListItems = this.#setListItems.asReadonly()
 
   #parseItems(){
